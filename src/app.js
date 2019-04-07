@@ -6,7 +6,7 @@ import isomorphicFetch from 'isomorphic-fetch';
 export class App {
   initializeApp() {
     let self = this;
-
+    this.spinner = document.querySelector('.js-spinner');
     this.profileContainer = document.querySelector('.js-profile');
     this.historyContainer = document.querySelector('.js-history');
     this.timeline = document.querySelector('.js-timeline');
@@ -27,6 +27,7 @@ export class App {
   }
 
   getData(userName) {
+    this.toggleSpinner();
     fetch('https://api.github.com/users/' + userName)
       .then(response => response.json())
       .then(body => {
@@ -99,7 +100,9 @@ export class App {
     this.historyContainer.classList.add('active');
   }
 
- 
+  toggleSpinner() {
+    this.spinner.classList.toggle('active')
+  }
   update_profile() {
     $('#profile-name').text($('.username.input').val())
     $('#profile-image').attr('src', this.profile.avatar_url)
@@ -107,6 +110,7 @@ export class App {
     $('#profile-bio').text(this.profile.bio || '(no information)')
     setTimeout(() => {
       this.showProfile();
+      this.toggleSpinner();
     }, 100)
   }
   
