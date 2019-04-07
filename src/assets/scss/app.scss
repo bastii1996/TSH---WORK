@@ -6,11 +6,13 @@
   margin-bottom: 8px;
 }
 
-.gh-username img{
-  width: 32px;
-  display:block;
+.navbar-item .error {
+  border: 2px solid red;
 }
 
+.gh-username img{
+  width: 32px;
+}
 
 #profile-bio{
   margin-top:10px;
@@ -19,9 +21,14 @@
 .timeline .timeline-item {
   padding-bottom:1em;
 }
-.error {
-  border:2px solid #e62424;
-  text-shadow: none;
-  border-radius: 7px;
-  transition: .2s;
+
+.profile-container,
+.events-container {
+  opacity: 0;
+  transition: all .25s ease-in;
+
+  &.active {
+    opacity: 1;
+  }
 }
+
