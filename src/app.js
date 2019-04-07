@@ -8,16 +8,31 @@ export class App {
 
     $('.load-username').on('click', function (e) {
       let userName = $('.username.input').val();
-
-      fetch('https://api.github.com/users/' + userName)
-        .then((response)=> response.json())
-        .then(function (body) {
-          self.profile = body;
-          self.update_profile();
-        })
-
+      self.removeError();
+      self.validateUserName(userName);
     })
+  }
 
+  validateUserName(val) {
+    const regx = /^[A-Za-z0-9_.-]+$/;
+    regx.test(val) ? this.getDate(val) : this.emitError();
+  }
+
+  getDate(userName) {
+    fetch('https://api.github.com/users/' + userName)
+      .then(response => response.json())
+      .then(body => {
+        this.profile = body;
+        this.update_profile();
+    })
+  }
+
+  emitError() {
+    $('.js-search').addClass('error');
+  }
+
+  removeError() {
+    $('.js-search').removeClass('error');
   }
 
   update_profile() {

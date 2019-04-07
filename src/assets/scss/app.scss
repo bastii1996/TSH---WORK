@@ -8,12 +8,9 @@
 
 .gh-username img{
   width: 32px;
-  float:left;
-  margin-right: 5px;
+  display:block;
 }
-.repo-name {
-  float:left;
-}
+
 
 #profile-bio{
   margin-top:10px;
@@ -21,4 +18,10 @@
 
 .timeline .timeline-item {
   padding-bottom:1em;
+}
+.error {
+  border:2px solid #e62424;
+  text-shadow: none;
+  border-radius: 7px;
+  transition: .2s;
 }
