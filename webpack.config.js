@@ -79,7 +79,10 @@ const config = {
   plugins: [
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({template: 'index.html'}),
-    extractPlugin
+    extractPlugin,
+    new webpack.ProvidePlugin({
+      Promise: 'es6-promise-promise'
+    }),
   ],
 
   devServer: {
